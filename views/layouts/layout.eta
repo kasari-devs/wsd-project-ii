@@ -47,7 +47,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="/">Main Page</a>
       <a class="nav-item nav-link" href="/topics">Topics</a>
-      <a class="nav-item nav-link" href="/quiz/">Quiz</a>
+      <a class="nav-item nav-link" href="/quiz">Quiz</a>
       <a class="nav-item nav-link" href="/auth/login">Login</a>
       <a class="nav-item nav-link" href="/auth/Register">Register</a>
       <a class="nav-item nav-link" href="/api/questions/random">API</a>

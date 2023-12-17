@@ -24,9 +24,10 @@ GET requests made to /api/questions/random will return a random question and all
 POST requests to: curl -X POST -H "Content-Type: application/json" -d '{"questionId": questionId, "optionId": optionId}' insert URL here/api/questions/answer
 will return {"correct":true/false} in the response body depending on the given parameters
 
+
 ## Project link
 
-https://kasras-unique-wsd-project-i.onrender.com/
+https://kasari-wsd-project-ii.onrender.com/
 
 ### Dependencies
 * This application waas created using Deno oak framework
