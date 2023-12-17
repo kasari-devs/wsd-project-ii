@@ -1,0 +1,33 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Statistics</h2>
+
+      <table class="table text-center">
+        <tr>
+          <th>Total Number Of Topics</th>
+          <td><%= it.totalTopicNumber %></td>
+        </tr>
+        <tr>
+          <th>Total Number Of Questions</th>
+          <td><%= it.totalNumberOfQuestions %></td>
+        </tr>
+        <tr>
+          <th>Total Number Of User Answered Questions</th>
+          <td><%= it.numberOfUserAnswers %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<% /* <h1>Statistics</h1>
+
+<h2>Total Number Of Topics: <%= it.totalTopicNumber %></h2>
+<h2>Total Number Of Questions: <%= it.totalNumberOfQuestions %></h2>
+<h2>Total Number Of User Answered Questions: <%= it.numberOfUserAnswers %></h2> */ %>
+
+

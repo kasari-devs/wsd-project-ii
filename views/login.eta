@@ -1,0 +1,32 @@
+<% layout("./layouts/layout.eta") %>
+
+
+<% /* <p>for development only: admin@admin.com--------user1@user.com-----------user3@user.com</p> */ %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-3"> <!-- Adjust the column size as needed -->
+      <h2>Login form</h2>
+      <form method="POST" action="/auth/login">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+        
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Enter password">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+ <% /* Email:<br/>
+  <input type="email" name="email" /><br/>
+  Password:<br/>
+  <input type="password" name="password" /><br/>
+  <input type="submit" value="login" /> */ %>

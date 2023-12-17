@@ -1,0 +1,38 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Select a quiz topic</h2>
+
+      <% if (it.topics && it.topics.length > 0) { %>
+        <ul class="list-group">
+          <% it.topics.sort((a, b) => a.name.localeCompare(b.name)).forEach(topic => { %>
+            <li class="list-group-item">
+              <a href="/quiz/<%= topic.id %>/"><%= topic.name %></a>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>None available.</p>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<% /* <h1>Selec a quiz topic</h1>
+<% if (it.topics && it.topics.length > 0) { %>
+<ul>
+    <% it.topics.sort((a, b) => a.name.localeCompare(b.name)).forEach(topic => { %>
+        <li>
+            <a href="/quiz/<%= topic.id %>/"><%= topic.name %></a>
+        </li>
+    <% }); %>
+</ul>
+
+<% } else { %>
+
+<p>None availtable.</p>
+
+<% } %> */ %>
+

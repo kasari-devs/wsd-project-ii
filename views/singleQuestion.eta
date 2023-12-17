@@ -1,0 +1,100 @@
+<% layout("./layouts/layout.eta") %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <% layout("./layouts/layout.eta") %>
+
+      <h1>Question</h1>
+      <%= it.question[0].question_text %>
+
+      <h1>Answers</h1>
+      <% if (it.answers && it.answers.length > 0) { %>
+        <ul class="list-group">
+          <% it.answers.forEach(answer => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <%= answer.option_text %> 
+              <form action="/topics/<%= it.topicId %>/questions/<%= answer.question_id %>/options/<%= answer.id %>/delete" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>No answers available.</p>
+        <form action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/delete" method="post" style="display: inline;">
+          <button type="submit" class="btn btn-danger btn-sm">Delete question</button>
+        </form>
+      <% } %>
+
+      <h2>Add an Answer Option</h2>
+
+      <% if (it.validationErrors) { %>
+        <div>
+          <ul>
+            <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+              <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+                <li><%= err %></li>
+              <% }); %>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form method="POST" action="/topics/<%= it.thisTopicId %>/questions/<%= it.question[0].id %>/options">
+        <div class="form-group">
+          <label for="option_text">Write an answer option for question:</label><br/>
+          <input type="text" name="option_text" id="option_text" class="form-control" value="<%= it.name ? it.name : "" %>"/><br/>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" name="is_correct" id="is_correct" class="form-check-input"/>
+          <label for="is_correct" class="form-check-label">Correct Option</label><br/>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<% /* <h1>Question</h1>
+<%= it.question[0].question_text %>
+
+<h1>Answers</h1>
+<% if (it.answers && it.answers.length > 0) { %>
+  <ul>
+    <% it.answers.forEach(answer => { %>
+      <li>
+            <%= answer.option_text %> 
+            <form action="/topics/<%= it.topicId %>/questions/<%= answer.question_id %>/options/<%= answer.id %>/delete" method="post" style="display: inline;">
+                <input type="submit" value="Delete">
+            </form>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+    <p>No answers available.</p>
+    <form action="/topics/<%= it.topicId %>/questions/<%= it.questionId %>/delete" method="post" style="display: inline;">
+        <input type="submit" value="Delete question">
+    </form>
+<% } %>
+
+
+<h2>Add an Answer Option</h2>
+
+<% if (it.validationErrors) { %>
+<ul>
+    <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+        <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<form method="POST" action="/topics/<%= it.thisTopicId %>/questions/<%= it.question[0].id %>/options">
+  <label for="option_text">Option Text:</label><br/>
+  <input type="text" name="option_text" value="<%= it.name ? it.name : "" %>"/><br/>
+  <label for="is_correct">Correct Option:</label>
+  <input type="checkbox" name="is_correct"/><br/>
+  
+  <input type="submit" value="Add"/>
+</form> */ %>

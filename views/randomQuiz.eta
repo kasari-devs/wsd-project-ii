@@ -1,0 +1,60 @@
+<% layout("./layouts/layout.eta") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Random Questions here</h1>
+
+      <% if (it.question_text && it.question_text.length > 0) { %>
+        <p><%= it.question_text %></p>
+      <% } else { %>
+        <p>None available.</p>
+      <% } %>
+
+      <h1>Answers</h1>
+      <% if (it.answers && it.answers.length > 0) { %>
+        <ul class="list-group">
+          <% it.answers.forEach(answer => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <%= answer.option_text %> 
+              <form action="/quiz/<%= it.tId %>/questions/<%= answer.question_id %>/options/<%= answer.id %>" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-primary btn-sm">Choose</button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>No answers available.</p>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<% /* <h1>Random Questions here</h1>
+
+<% if (it.question_text && it.question_text.length > 0) { %>
+
+           <p><%= it.question_text %></p>
+       
+<% } else { %>
+
+<p>None availtable.</p>
+
+<% } %>
+
+<h1>Answers</h1>
+<% if (it.answers && it.answers.length > 0) { %>
+  <ul>
+    <% it.answers.forEach(answer => { %>
+      <li>
+            <%= answer.option_text %> 
+            <form action="/quiz/<%= it.tId %>/questions/<%= answer.question_id %>/options/<%= answer.id %>" method="post" style="display: inline;">
+                <input type="submit" value="Choose">
+            </form>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+    <p>No answers available.</p>
+<% } %> */ %>
+
