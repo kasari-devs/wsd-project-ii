@@ -50,7 +50,7 @@ const listRandomQuestion = async ({ params, render, response }) => {
     });
 }
 
-const processQuizResult = async ({ request, params, render, response, user}) => {
+const processQuizResult = async ({ request, params,response, user}) => {
 
     //const body = request.body({ type: "form" });
     //const formData = await body.value;
@@ -60,14 +60,20 @@ const processQuizResult = async ({ request, params, render, response, user}) => 
     const userId = user.id;
     const topicId = params.tId;
     const questionId = params.qId;
+    console.log(`proccessQuizResult--> topicId: ${topicId}, questionId: ${questionId}, answerId: ${answerId}`);
     await questionService.insertQuizResult(userId, questionId, answerId);
-    const results = await questionService.getCorrectQuestionAns(answerId);
+    const results = await questionService.getCorrectQuestionAns(questionId, answerId);
+    console.log("this is results from processQuizResult --> ", results);
     const userSelection = results[0].is_correct
     console.log(`userSelection: ${userSelection}`);
-    if (userSelection === true) {        
-        response.redirect(`/quiz/${topicId}/questions/${questionId}/correct`);
-    } else {
-        response.redirect(`/quiz/${topicId}/questions/${questionId}/incorrect`);
+    var isTrue = userSelection
+    switch (isTrue.toString()) {
+        case 'true':
+            response.redirect(`/quiz/${topicId}/questions/${questionId}/correct`);
+            break;
+        case 'false':
+            response.redirect(`/quiz/${topicId}/questions/${questionId}/incorrect`);
+            break;
     }
 }
 
@@ -78,7 +84,8 @@ const showCorrectAnswer = async ({ render, params }) => {
 };
 
 const showWrongAnswer = async ({ render, params }) => {
-    const results = await questionService.getCorrectQuestionAns(params.qId);
+    const results = await questionService.getCorrectQuestionAnsText(params.qId);
+    console.log("this is results from showWrongAnswer --> ", results);
     render("wrongAns.eta", {
         topicId: params.tId,
         answer: results[0].option_text,

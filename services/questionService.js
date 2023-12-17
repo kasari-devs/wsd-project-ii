@@ -120,9 +120,22 @@ const addAnswer = async (text, isCorrect, qId) => {
     }
  }
 
- const getCorrectQuestionAns= async (id) => {
+ const getCorrectQuestionAns= async (questionId, answerId) => {
     try {
-        const rows = await sql `SELECT * FROM question_answer_options WHERE id = ${id}`;
+        const rows = await sql `SELECT is_correct
+        FROM question_answer_options
+        WHERE question_id = ${questionId} AND id = ${answerId}`;
+        return rows;
+    } catch (error) {
+        console.error("failed to fetch results", error.message);
+    }
+ }
+
+ const getCorrectQuestionAnsText = async (questionId) => {
+    try {
+        const rows = await sql `SELECT option_text
+        FROM question_answer_options
+        WHERE question_id = ${questionId} AND is_correct = true`;
         return rows;
     } catch (error) {
         console.error("failed to fetch results", error.message);
@@ -150,4 +163,5 @@ export {
     listAllAnswers,
     totalNumberOfQuestions,
     totalNumberOfUserAnswers,
+    getCorrectQuestionAnsText
 }

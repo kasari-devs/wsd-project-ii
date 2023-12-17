@@ -16,7 +16,6 @@ const listRandomQuestion = async ({ response }) => {
         "answerOptions": matchingAnswers.map(answer => ({
             optionId: answer.id,
             optionText: answer.option_text,
-            correct: answer.is_correct,
         })),  
     }
     // const result = randomQuestion.map(question => {
